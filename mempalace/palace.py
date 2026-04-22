@@ -4,6 +4,7 @@ palace.py — Shared palace operations.
 Consolidates collection access patterns used by both miners and the MCP server.
 """
 
+import atexit
 import contextlib
 import hashlib
 import os
@@ -38,6 +39,7 @@ SKIP_DIRS = {
 }
 
 _DEFAULT_BACKEND = ChromaBackend()
+atexit.register(_DEFAULT_BACKEND.close)
 
 # Schema version for drawer normalization. Bump when the normalization
 # pipeline changes in a way that existing drawers should be rebuilt to pick up
